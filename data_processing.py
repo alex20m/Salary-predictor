@@ -35,10 +35,8 @@ def main():
 
     for entry in range(len(data['gender'])):
         if data['gender'][entry] == 'M':
-            #data['gender'][entry].astype(int)
             data.loc[entry, 'gender'] = 0
         if data['gender'][entry] == 'F':
-            #data['gender'][entry].astype(int)
             data.loc[entry, 'gender'] = 1
 
     new_data = data.drop('ID', axis='columns').sample(frac=1)    # Sample blandar datan randomly eftersom salary_data.csv verkar vara i storleksordning neligt lön
