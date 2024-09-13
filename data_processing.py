@@ -3,7 +3,7 @@ import pandas as pd
 def create_data_sets(input_data):
 
     training_set_first_entry = 0
-    training_set_last_entry = int(len(input_data) * 0.75)
+    training_set_last_entry = int(len(input_data) * 0.70)
     testing_set_first_entry = training_set_last_entry + 1
     testing_set_last_entry = int(training_set_last_entry + (len(input_data) - testing_set_first_entry) / 2)
     validating_set_first_entry = testing_set_last_entry + 1
@@ -39,9 +39,9 @@ def main():
         if data['gender'][entry] == 'F':
             data.loc[entry, 'gender'] = 1
 
-    new_data = data.drop('ID', axis='columns').sample(frac=1)    # Sample blandar datan randomly eftersom salary_data.csv verkar vara i storleksordning neligt lön
+    new_data = data.drop('ID', axis='columns').sample(frac=1).dropna(axis=0)
     new_data.to_csv("processed_salary_data.csv", index=False)
 
 if __name__ == "__main__":
-    #main()
+    main()
     create_data_sets(pd.read_csv("processed_salary_data.csv"))
