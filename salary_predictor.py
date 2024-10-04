@@ -32,7 +32,6 @@ def polynomialRegression():
     X_test = test_data[['age', 'gender', 'education_level']].values
     y_test = test_data['income'].values
 
-    print(len(y_test))
 
 
 if __name__ == "__main__":
