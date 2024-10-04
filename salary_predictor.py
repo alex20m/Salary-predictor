@@ -34,9 +34,7 @@ def choose_degree(X_train, y_train, X_val, y_val):
 
         train_mse = mean_squared_error(y_train, y_train_pred)
         val_mse = mean_squared_error(y_val, y_val_pred)
-
-        print(f"Degree {degree}:\nTrain MSE: {train_mse}\nVal MSE: {val_mse}")
-        
+        validation_errors.append(val_mse)        
 
     # Identify the best degree based on validation errors
     best_degree = degrees[np.argmin(validation_errors)]
@@ -58,10 +56,9 @@ def polynomialRegression():
     X_test = test_data[['age', 'gender', 'education_level']].values
     y_test = test_data['income'].values
 
-    choose_degree(X_train, y_train, X_val, y_val)
-    return
+    #choose_degree(X_train, y_train, X_val, y_val)
 
-    degree = 2  # Can be changed
+    degree = 8  # Can be changed, 8 found to be the best using validation set
 
     model = LinearRegression()
     poly = PolynomialFeatures(degree=degree)
@@ -72,6 +69,10 @@ def polynomialRegression():
 
     model.fit(X_train_poly, y_train)
 
+    y_test_pred = model.predict(X_test_poly)
+    test_mse = mean_squared_error(y_test, y_test_pred)
+
+    print(f'Test MSE: {test_mse:.2f}')
 
 
 if __name__ == "__main__":
