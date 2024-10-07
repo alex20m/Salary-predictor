@@ -58,7 +58,6 @@ def decissionTreeRegressor():
     print('Without GridSearchCv:\nValidation MSE: 151997896.78\nTest MSE: 81337107.86')
 
     print('With GridSearchCV:\n')
-    print(f'Validation MSE: {mse_val:.2f}')
     print(f'Test MSE: {mse_test:.2f}')
     print(grid_search.best_params_)
 
