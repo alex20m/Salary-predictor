@@ -69,13 +69,22 @@ def polynomialRegression():
 
     model.fit(X_train_poly, y_train)
 
+    y_train_pred = model.predict(X_train_poly)
+    y_val_pred = model.predict(X_val_poly)
     y_test_pred = model.predict(X_test_poly)
-    test_mse = mean_squared_error(y_test, y_test_pred)
 
+    train_mse = mean_squared_error(y_train, y_train_pred)
+    val_mse = mean_squared_error(y_val, y_val_pred)
+    test_mse = mean_squared_error(y_test, y_test_pred)
+    
+    print(f'Train MSE: {train_mse:.2f}')
+    print(f'Validation MSE: {val_mse:.2f}')
     print(f'Test MSE: {test_mse:.2f}')
+
+    return model
 
 
 if __name__ == "__main__":
-    #processed_data = pd.read_csv('processed_salary_data.csv')
-    #heatmap(processed_data)
-    polynomialRegression()
+    processed_data = pd.read_csv('processed_salary_data.csv')
+    heatmap(processed_data)
+    poly_reg_model = polynomialRegression()
