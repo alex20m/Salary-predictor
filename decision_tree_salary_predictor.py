@@ -48,17 +48,22 @@ def decissionTreeRegressor():
 
     best_regressor = grid_search.best_estimator_
 
-    y_pred = best_regressor.predict(X_test)
+    y_pred_train = best_regressor.predict(X_train)
+    y_pred_test = best_regressor.predict(X_test)
+    y_pred_val = best_regressor.predict(X_val)
 
-    mse_test = mean_squared_error(y_test, y_pred)
-    mse_val = mean_squared_error(y_val, y_pred)
+    mse_train = mean_squared_error(y_train, y_pred_train)
+    mse_test = mean_squared_error(y_test, y_pred_test)
+    mse_val = mean_squared_error(y_val, y_pred_val)
 
     #pd.DataFrame(y_pred).to_csv("predicted_salary.csv", index=False)
 
     print('Without GridSearchCv:\nValidation MSE: 151997896.78\nTest MSE: 81337107.86')
 
     print('With GridSearchCV:\n')
-    print(f'Test MSE: {mse_test:.2f}')
+    print(f'Train MSE:    {mse_train:.2f}')
+    print(f'Test  MSE:    {mse_test:.2f}')
+    print(f'Validate MSE: {mse_val:.2f}')
     print(grid_search.best_params_)
 
 
